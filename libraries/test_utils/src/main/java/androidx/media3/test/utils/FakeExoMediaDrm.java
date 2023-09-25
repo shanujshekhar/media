@@ -411,6 +411,16 @@ public final class FakeExoMediaDrm implements ExoMediaDrm {
     return FakeCryptoConfig.TYPE;
   }
 
+  @Override
+  public void removeOfflineLicense(byte[] keySetId) {
+    // Do nothing
+  }
+
+  @Override
+  public List<byte[]> getOfflineLicenseKeySetIds() {
+    return null;
+  }
+
   // Methods to facilitate testing
 
   public int getReferenceCount() {

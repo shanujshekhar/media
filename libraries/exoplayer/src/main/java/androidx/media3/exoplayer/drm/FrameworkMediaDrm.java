@@ -26,6 +26,7 @@ import android.media.MediaDrmException;
 import android.media.NotProvisionedException;
 import android.media.UnsupportedSchemeException;
 import android.media.metrics.LogSessionId;
+import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
 import androidx.annotation.DoNotInline;
@@ -46,6 +47,7 @@ import com.google.common.base.Charsets;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -378,6 +380,21 @@ public final class FrameworkMediaDrm implements ExoMediaDrm {
   @Override
   public @C.CryptoType int getCryptoType() {
     return C.CRYPTO_TYPE_FRAMEWORK;
+  }
+
+  @Override
+  public void removeOfflineLicense(byte[] keySetId) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      mediaDrm.removeOfflineLicense(keySetId);
+    }
+  }
+
+  @Override
+  public List<byte[]> getOfflineLicenseKeySetIds() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      return mediaDrm.getOfflineLicenseKeySetIds();
+    }
+    return Collections.emptyList();
   }
 
   private static SchemeData getSchemeData(UUID uuid, List<SchemeData> schemeDatas) {

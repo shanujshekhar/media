@@ -156,4 +156,14 @@ public final class DummyExoMediaDrm implements ExoMediaDrm {
   public @C.CryptoType int getCryptoType() {
     return C.CRYPTO_TYPE_UNSUPPORTED;
   }
+
+  @Override
+  public void removeOfflineLicense(byte[] keySetId) {
+    // Do nothing
+  }
+
+  @Override
+  public List<byte[]> getOfflineLicenseKeySetIds() {
+    return null;
+  }
 }

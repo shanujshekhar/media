@@ -575,4 +575,14 @@ public interface ExoMediaDrm {
    */
   @C.CryptoType
   int getCryptoType();
+
+  /**
+   * See {@link MediaDrm#removeOfflineLicense(byte[])}
+   */
+  void removeOfflineLicense(byte[] keySetId);
+
+  /**
+   * See {@link MediaDrm#getOfflineLicenseKeySetIds()}
+   */
+  List<byte[]> getOfflineLicenseKeySetIds();
 }
